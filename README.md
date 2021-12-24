@@ -16,5 +16,4 @@ This blog will make you understand how to get interact with ELK and make use of 
 This blog will be of this below partition
   * api query
   * automation (how can we implement or get to know by single click)
-      *tools which are required
 </b></details>
