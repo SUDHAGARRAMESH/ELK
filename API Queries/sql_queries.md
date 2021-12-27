@@ -2,7 +2,7 @@
 
 
 
-<p> Example1 </p>
+   <p> Example1 </p>
 
  ```console
  POST _sql?format=txt
@@ -14,8 +14,9 @@
  * To view the particular documents inside an index (or) in SQL terms to view the details inside particular column in a table
 
  
-<p> Example2 </p> 
- ```console
+ <p> Example2 </p> 
+ 
+```console
 
 POST /_sql?format=txt
 {
