@@ -49,8 +49,8 @@ This blog has been divided into below partition
  ```console
  _cluster/health?pretty=true 
  ```
- <p> To view more api queries . Click link <a href="https://github.com/SUDHAGARRAMESH/ELK/blob/master/API%20Queries/common%20troubleshooting%20queries.md" target="_blank">troubleshooting queries</a> 
+ <p> To view more api queries . Click the following link <a href="https://github.com/SUDHAGARRAMESH/ELK/blob/master/API%20Queries/common%20troubleshooting%20queries.md" target="_blank">troubleshooting queries</a> 
    
    
 ## SQL
-  <p> To view more api queries. Click link  <a href="https://github.com/SUDHAGARRAMESH/ELK/blob/master/API%20Queries/sql_queries.md" target="_blank">sql_queries</a> 
+  <p> To view more api queries. Click the following link  <a href="https://github.com/SUDHAGARRAMESH/ELK/blob/master/API%20Queries/sql_queries.md" target="_blank">sql_queries</a> 
