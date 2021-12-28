@@ -1,7 +1,6 @@
 * To view the documents inside an index (or) in SQL terms to view the rows of a table
 
 
-
    <p> Example1 </p>
 
  ```console
@@ -24,4 +23,4 @@ POST /_sql?format=txt
 }
  ```
  
- NOTE: Here "Name" and "Designation" are columns and the table here is "sample-sql-events" 
+ NOTE: Here "Name" and "Designation" are columns and the table here is "sample-sql-events" which are separated by escape sequence
