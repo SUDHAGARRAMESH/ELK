@@ -4,7 +4,7 @@ This blog will make you understand how to get interact with ELK and make use of 
 
 
 <p>Topics to be Covered:</p>
-   1. [How to Troubleshoot Elastic Cluster Related issues](#Troubleshooting) <br>
+   1. How to Troubleshoot Elastic Cluster Related issues  <br>
    2. [How to interact with Kibana] <br>
    3. [How to interact with logstash (metricbeat, filebeat, heartbeat)] <br>
    4. [How to interact with SQL](#SQL) <br>
@@ -20,7 +20,7 @@ This blog has been divided into below partition
    3. Automation/Monitoring
 </details>
 
-## Troubleshooting
+## How to Troubleshoot Elastic Cluster Related issues
 
 ## UseCases
 
