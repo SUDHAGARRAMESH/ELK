@@ -9,6 +9,7 @@ This blog will make you understand how to get interact with ELK and make use of 
    3. [How to interact with logstash (metricbeat, filebeat, heartbeat)] <br>
    4. [How to interact with SQL](#SQL) <br>
    5. [How to interact with esRally] <br>
+   6. [Sample watcher creations with code] (#watcher) <br>
 <br><br>
 <details>
 <b>What needs to be considered when you are reading this blog?<br></b>
@@ -54,3 +55,6 @@ This blog has been divided into below partition
    
 ## SQL
   <p> To view more api queries. Click the following link  <a href="https://github.com/SUDHAGARRAMESH/ELK/blob/master/API%20Queries/sql_queries.md" target="_blank">sql_queries</a> 
+
+## watcher
+     <p> To view more abou watcher codes. Click the following link  <a href="https://github.com/SUDHAGARRAMESH/ELK/tree/master/watcher" target="_blank">watcher examples</a> 
