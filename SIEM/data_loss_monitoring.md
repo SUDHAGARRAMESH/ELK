@@ -11,6 +11,12 @@ Using Auditbeat will monitor particular paths by which a transfer,deletion of fi
 
 
 Steps:
+1. Monitor the filepath using Auditbeat config 
+2. Check any files transferred/copied to any other location or deleted using logstash
+3. Create index pattern for that auditbeat in kibana and check the incoming events and test those
+4. create a watcher based on the conditions (mentioned in step2)
+
+
 
 ```console
 auditbeat config (main lines to be added)
