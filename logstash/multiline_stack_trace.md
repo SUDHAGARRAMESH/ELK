@@ -49,6 +49,13 @@ replace => "ERROR"
     grok {
       match => { "message" => "%{MONTHNUM:actual_month}/%{YEAR:year} %{TIME:time} %{LOGLEVEL:log-level}  :..%{GREEDYDATA:syslog_message}"
 	  }
+#if any issues with grok filter that will be tagged with grokparse failure which we are eliminating here below
+
+    if "_grokparsefailure" in [tags]
+    {
+    drop{}
+    }
+    
     }
 }
 
