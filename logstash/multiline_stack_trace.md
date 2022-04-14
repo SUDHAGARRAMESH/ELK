@@ -1,6 +1,6 @@
 #Multiline Stack Trace in RSVP log
 
-
+# The aim is to ingest only the "TRACE" level logs . This can be achieved using filter plugin
 
 
 ```console
@@ -28,8 +28,20 @@ input {
 
 
 filter {
+
+if [headers] [request_path] = ~ "TRACE"
+{
+mutate{
+replace => "TRACE"
+}
+
+else if [headers] [request_path] = ~ "ERROR" or [request_path] = ~ "WARN"  {
+mutate{
+replace => "ERROR"
+}
+}
+}
     grok {
-	
       match => { "message" => "%{MONTHNUM:actual_month}/%{YEAR:year} %{TIME:time} %{LOGLEVEL:log-level}  :..%{GREEDYDATA:syslog_message}"
 	  }
     }
