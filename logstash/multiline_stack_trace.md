@@ -29,6 +29,11 @@ input {
 
 filter {
 
+#THIS will exclude the lines starts with space
+if [message] == "" {
+    drop { }
+  }
+  
 if [headers] [request_path] = ~ "TRACE"
 {
 mutate{
