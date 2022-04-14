@@ -9,9 +9,13 @@ input {
 
 #for testing this below file has been created
 	#file{
-	#	path => "G:/Logstash/RSVP_agent_logs.txt"
+	#	path => "../logstash/RSVP_agent_logs.txt"
 	#	start_position =>"beginning"
 	#}
+	
+	beats{
+		port => 5044
+	}
 	
 	#any line that begins with whitespace up to the previous line
 	stdin {
