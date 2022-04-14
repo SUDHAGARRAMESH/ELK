@@ -13,8 +13,10 @@ Using Auditbeat will monitor particular paths by which a transfer,deletion of fi
 Steps:
 1. Monitor the filepath using Auditbeat config 
 2. Check any files transferred/copied to any other location or deleted using logstash
-3. Create index pattern for that auditbeat in kibana and check the incoming events and test those
-4. create a watcher based on the conditions (mentioned in step2)
+3. Get that path location and filename details
+4. Using filebeat checking the contents of the file
+5. Create index pattern in kibana and check the incoming events and test those
+6. create a watcher based on the conditions (mentioned in step2)
 
 
 
@@ -25,7 +27,26 @@ auditbeat config (main lines to be added)
 
 #if windows
 
+- module: file_integrity
+  paths:
+  - C:/windows
+  - C:/windows/system32
+  - C:/Program Files
+  - C:/Program Files (x86)
+  - G:/AuditBeat_test
+  - C:\Users\Sudhagar\Downloads
+
 #if linux related system
+- module: file_integrity
+paths:
+  - /var/log/syslog
+  - /var/log/messages
+  - /var/log/secure
+  - /var/log/boot.log
+  - /var/log/mail*
+  - /var/log/faillog*
+  - /var/log/httpd/*
+
 
 ```
 
@@ -40,12 +61,35 @@ logstash
 
 <h1> Once this has been done create index patterns and check in kibana whether the datas been received </h1>
 
+```
+<h1>Pipeline code which will take the filename and location details </h1>
 
+```console
+filter {
+   if [fields][log_type] == "obapp-dotnet" {
+    grok {
+      #break_on_match => true
+      match => {"[log][file][path]" => "%{GREEDYDATA}/%{GREEDYDATA:filename}\.log"}
+    }
+      #if [log][file][path] == "*.log"{
+      grok{
+        match => { 
+	"message" => [
+	   "%{DATESTAMP:timestamp}%{SPACE}%{NONNEGINT:code}%{GREEDYDATA}%{LOGLEVEL:loglevel}%{SPACE}%{NONNEGINT:anum}%{SPACE}%{GREEDYDATA:logmessage}" 
+ 	]
+       }
+      }
+    #}
+  }
+```
+
+
+<h1> alert setup if a file added or deleted or shared </h1>
 
 ```console
 #watcher
 
-PUT _xpack/watcher/watch/filepath_monitor
+PUT _xpack/watcher/watch/file_monitor
 {
   "trigger" : { "schedule" : { "interval" : "1m" }},
   "input" : {
@@ -56,7 +100,7 @@ PUT _xpack/watcher/watch/filepath_monitor
           "query": {
     "bool": {
       "filter": [ 
-        { "range":  { "docker.memory.usage.pct": {"gte": "0.95"} }}, 
+        {  
         { "range": { "@timestamp": { "gte": "now-2m" }}} 
       ]
     }
@@ -73,7 +117,7 @@ PUT _xpack/watcher/watch/filepath_monitor
       "throttle_period": "5m", 
       "email" : { 
         "to" : ["<recipient1>", "<recipient2>"],
-        "subject" : "Data Loss alert",
+        "subject" : "Data Breach alert",
         "body" : "{{#ctx.payload.hits.hits}} {{_source.container.name}} {{/ctx.payload.hits.hits}} data loss has been happened",
         "attachments" : {
           "attached_data" : {
